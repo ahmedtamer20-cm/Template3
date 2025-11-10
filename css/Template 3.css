@@ -76,7 +76,7 @@ position: relative;
 
 .logo{
 color: var(--main-color);
-font-size: 26px;
+font-size: 32px;
 font-weight: bold;
 height: 72px;
 display: flex;
@@ -99,6 +99,12 @@ display: flex;
   .header .main-nav {
     margin: auto;
   }
+}
+
+.main-nav > li:hover .mega-menu{
+  opacity: 100%;
+  z-index: 1;
+  top: calc(100% + 2px);
 }
 
 .main-nav > li > a {
@@ -147,6 +153,74 @@ display: flex;
 .main-nav > li > a:hover::before{
 left: 0;
 }
+
+/* start mega menu */
+.header .mega-menu{
+position: absolute;
+width: 100%;
+left: 0;
+padding: 20px;
+background-color: #fff;
+border-bottom: 3px solid var(--main-color);
+z-index: -1;
+display: flex;
+gap: 40px;
+top: calc(100% + 50px);
+opacity: 0;
+transition: top var(--main-transition) , opacity var(--main-transition);
+}
+
+.header .mega-menu .links{
+flex: 1;
+min-width: 250px;
+}
+
+.header .mega-menu .links li{
+position: relative;
+}
+
+.header .mega-menu .links li:not(:last-child){
+border-bottom: 1px solid #e9e6e6;
+}
+
+
+.header .mega-menu .links li::before{
+content: "";
+position: absolute;
+left:0;
+top:0;
+width: 0px;
+height: 100%;
+background-color: #e0d2d29f;
+z-index: -1;
+transition: var(--main-transition);
+}
+
+.header .mega-menu .links li:hover::before{
+width: 100%;
+}
+
+.header .mega-menu .links li a{
+color: var(--main-color);
+display: block;
+padding: 15px;
+font-size: 18px;
+font-weight: bold;
+}
+
+.header .mega-menu .links li i{
+margin-right: 10px;
+}
+
+
+
+.img{
+  max-width: 100%;
+}
+
+
+/* end mega menu */
+
 /*End Header */
 
 /* start landing */
@@ -177,6 +251,12 @@ position: relative;
   flex: 1;
 }
 
+.landing .text h1{
+  font-size: 40px;
+  margin: 0;
+  letter-spacing: -2px;
+}
+
 .landing .text p {
   font-size: 23px;
   line-height: 1.7;
@@ -186,13 +266,40 @@ position: relative;
 }
 
 .landing img{
+  position: relative;
     width: 600px;
+    animation: up-down 3s linear infinite;
+    transition: var(--main-transition);
+}
+
+@keyframes up-down {
+  0% , 100% {
+    top :0px;
+  }
+  50% {
+    top:  -50px  ;
+  }
 }
 
 .go-down{
     position: absolute;
     left: 50%;
     bottom: 30px;
+}
+
+.go-down i{
+  position: relative;
+  animation:  bouncing .8s linear infinite;
+}
+
+@keyframes bouncing {
+  0%  , 100% {
+    top:0;
+
+  }
+  50% {
+    top: -10px;
+  }
 }
 
 /* end landing */
