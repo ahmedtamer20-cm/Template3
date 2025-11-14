@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AOS Demo</title>
+  <link rel="stylesheet" href="./css/aos.css" />
+  <style>
+    body { margin:0; font-family:system-ui, sans-serif }
+    .block { height:60vh; display:grid; place-items:center }
+    .one { background:#111827; color:#fff }
+    .two { background:#0f766e; color:#fff }
+    .three { background:#f59e0b; color:#111 }
+  </style>
+</head>
+<body>
+  <div class="block one"><h1 data-aos="fade-up">Fade Up</h1></div>
+  <div class="block two"><h1 data-aos="zoom-in">Zoom In</h1></div>
+  <div class="block three"><h1 data-aos="flip-left">Flip Left</h1></div>
+  <script src="./js/aos.js"></script>
+  <script>AOS.init({ duration: 700 });</script>
+</body>
+</html>

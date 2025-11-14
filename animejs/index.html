@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>anime.js Demo</title>
+  <style>
+    body { margin:0; display:grid; place-items:center; height:100vh; background:#0f172a; font-family:system-ui, sans-serif }
+    .dot { width:24px; height:24px; background:#22c55e; border-radius:50%; box-shadow:0 0 0 6px #16a34a33 }
+  </style>
+</head>
+<body>
+  <div class="dot"></div>
+  <script src="./anime.min.js"></script>
+  <script>
+    anime({ targets: '.dot', translateX: 240, scale: [1, 1.6], direction: 'alternate', easing: 'easeInOutSine', duration: 900, loop: true });
+  </script>
+</body>
+</html>
