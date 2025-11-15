@@ -24,6 +24,8 @@ html{
 
 body{
       font-family: "Cairo", sans-serif;
+      perspective: 1200px;
+      transform-style: preserve-3d;
 }
 
 ul{list-style: none;
@@ -514,7 +516,7 @@ position: relative;
 
 .go-down i{
   position: relative;
-  animation:  bouncing .8s linear infinite;
+  animation:  rocket-bounce 1s ease-in-out infinite;
 }
 
 @keyframes bouncing {
@@ -525,6 +527,11 @@ position: relative;
   50% {
     top: -10px;
   }
+}
+
+@keyframes rocket-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
 }
 
 /* end landing */
@@ -568,7 +575,7 @@ cursor: pointer;
 
 .box:hover{
   border-radius: 50px;
-  transform: translateY(-10px);
+  transform: translate3d(0,-10px,0) scale(1.02) rotate3d(1,0,0,0.5deg);
   transition: var(--main-transition);
 box-shadow: 0 2px 15px rgb(0 0 0 / 39%);
 }
@@ -670,7 +677,7 @@ position: relative;
 }
 
 .gallery .box .image:hover img{
-  transform: rotate(5deg)  scale(1.1);
+  transform: rotate3d(0,0,1,5deg)  scale(1.05);
 }
 
 @keyframes flashing{
@@ -693,6 +700,80 @@ position: relative;
 
   
 }
+.cursor-trail{
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1000;
+}
+
+.cursor-trail::before{
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff 0%, var(--main-color) 60%, transparent 100%);
+  left: var(--x, -100px);
+  top: var(--y, -100px);
+  transform: translate(-50%, -50%);
+  opacity: var(--trailOpacity, 0);
+}
+.bg-parallax{
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+  background: radial-gradient(circle at top left, #e3f2fd 0, transparent 55%),
+              radial-gradient(circle at bottom right, #e8eaf6 0, transparent 55%);
+}
+
+.bg-parallax .layer{
+  position: absolute;
+  inset: -20%;
+}
+
+.bg-parallax .layer-1{
+  background: linear-gradient(135deg, rgba(33,150,243,0.13), transparent 60%);
+}
+
+.bg-parallax .layer-2{
+  background: linear-gradient(225deg, rgba(3,169,244,0.12), transparent 60%);
+}
+
+.bg-parallax .layer-3{
+  background: radial-gradient(circle at center, rgba(255,255,255,0.35), transparent 55%);
+}
+
+.section-indicator{
+  position: fixed;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 900;
+}
+
+.section-indicator ul{
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.section-indicator li{
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.18);
+  border: 1px solid rgba(255,255,255,0.7);
+  transition: background var(--main-transition), transform var(--main-transition), box-shadow var(--main-transition);
+}
+
+.section-indicator li.active{
+  background: var(--main-color);
+  transform: scale(1.4);
+  box-shadow: 0 0 10px rgba(33,150,243,0.8);
+}
 /* end gallery */
 /* start features */
 .features {
@@ -709,6 +790,8 @@ position: relative;
 .features .box {
   text-align: center;
   border: 1px solid #ccc;
+  transform-style: preserve-3d;
+  transition: transform var(--main-transition), box-shadow var(--main-transition);
 }
 .features .box .img-holder {
   position: relative;
@@ -813,6 +896,11 @@ position: relative;
   background-position: left bottom;
   color: white;
 }
+
+.features .box:hover{
+  transform: translate3d(0,-12px,0) rotate3d(1,1,0,6deg);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.22);
+}
 /* end features */
 /* start testimonials */
 #testimonials{
@@ -878,6 +966,8 @@ border:10px solid var(--section-background) ;
   position: relative;
   width: 370px;
   /* overflow: hidden; */
+  transform-style: preserve-3d;
+  transition: transform var(--main-transition), box-shadow var(--main-transition);
 }
 
 .team .box2::before,
@@ -904,6 +994,11 @@ border:10px solid var(--section-background) ;
 .team .box2:hover::after{
   position: absolute;
 width: 80%;
+}
+
+.team .box2:hover{
+  transform: translate3d(0,-10px,0) rotate3d(0,1,0,4deg);
+  box-shadow: 0 18px 30px rgba(0,0,0,0.25);
 }
 
 .team .box2 .data{
@@ -998,7 +1093,8 @@ transition: var(--main-transition);
   overflow: hidden;
   box-shadow: 0 12px 20px 0 rgb(0 0 0 / 13%), 0 2px 4px 0 rgb(0 0 0 / 12%);
  counter-increment: services;
- transition: var(--main-transition);
+  transition: var(--main-transition);
+  transform-style: preserve-3d;
 }
 
 .services .container .box::before{
@@ -1031,6 +1127,11 @@ transition: var(--main-transition);
   width: 100%;
   transition: var(--main-transition);
   
+}
+
+.services .container .box:hover{
+  transform: translate3d(0,-12px,0) rotate3d(0,1,0,6deg);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.25);
 }
 
 .services .box i{
@@ -1143,11 +1244,13 @@ transform: skew(-30deg);
   padding-bottom: var(--main-padding-bottom);
   position: relative;
   background-color: var(--section-background);
+  transform-style: preserve-3d;
 }
 .work-steps .container {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  transform-style: preserve-3d;
 }
 @media (max-width: 991px) {
   .work-steps .container {

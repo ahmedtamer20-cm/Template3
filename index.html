@@ -14,6 +14,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=Kalnia:wght@100..700&family=Momo+Signature&family=Rubik+80s+Fade&display=swap" rel="stylesheet">
 </head>
 <body>
+  <div class="cursor-trail" aria-hidden="true"><span class="cursor-dot"></span></div>
   <!-- Start Header  -->
    <div class="header" id="header">
     <div class="container">
@@ -37,7 +38,7 @@
         <li>
           <a href="#oterlinkes">Other Links</a>
           <!-- start mega menu -->
-          <div class="mega-menu">
+          <!-- <div class="mega-menu">
             <div class="img"><img src="imgs/megamenu.png" alt=""></div>
             <ul class="links">
               <li><a href=""><i class="far fa-comments fa-fw"></i> Testimonials</a></li>
@@ -53,7 +54,7 @@
               <li><a href=""><i class="far fa-chart-bar fa-fw"></i>Stats</a></li>
               <li><a href=""><i class="fas fa-percent fa-fw"></i>Request a Discount</a></li>
               </ul>
-            </div>
+            </div> -->
           <!-- end mega menu -->
          </li>
 
@@ -722,9 +723,19 @@
 
       delay: 700
     });
+
+    ScrollReveal().reveal('.main-nav li', {
+      distance: '40px',
+      origin: 'top',
+      duration: 800,
+      interval: 150,
+
+      delay: 200
+    });
+
     ScrollReveal().reveal('.landing .text', {
       distance: '40px',
-      origin: 'left',
+      origin: 'top',
       duration: 800,
       interval: 150,
 
@@ -759,6 +770,21 @@
       yoyo: true,
       ease: 'sine.inOut'
     });
+
+    // gsap: cursor blue dot trail
+    const cursorDot = document.querySelector('.cursor-trail .cursor-dot');
+    if (cursorDot) {
+      window.addEventListener('mousemove', (e) => {
+        const x = e.clientX;
+        const y = e.clientY;
+        gsap.to(cursorDot, {
+          x,
+          y,
+          duration: 0.25,
+          ease: 'power2.out'
+        });
+      });
+    }
 
     // three.js: simple robot next to logo saying HELLO USER
     (function() {
