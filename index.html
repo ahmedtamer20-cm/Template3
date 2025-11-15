@@ -654,7 +654,9 @@
       typeSpeed: 70,
       backSpeed: 40,
       backDelay: 1500,
-      loop: true
+      loop: true,
+      showCursor:true,
+      fadeOut:true,
     });
 // scrollreveal.js
 
@@ -679,15 +681,15 @@
     });
 
     ScrollReveal().reveal('.box , .box2 , .our-skills .skill .the-progress span ' , {
-      distance: '40px',
-      origin: 'bottom',
-      duration: 700,
+      distance: '30px',
+      origin: 'right',
+      duration: 500,
       interval: 150,
       opacity: 0, 
       easing:"ease-in-out",
-      reset:true,
-      rotate:{x:0 , y:0 , z:12},
+      rotate:{x:0 , y:0 , z:6},
       scale:1,
+      viewFactor:.3,
     });
   </script>
 
