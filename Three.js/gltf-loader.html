@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Three.js GLTFLoader + RGBELoader</title>
+    <style>
+      html, body { height: 100%; margin: 0 }
+      #app { width: 100%; height: 100%; overflow: hidden }
+      canvas { display: block }
+      .ui { position: fixed; top: 12px; left: 12px; background: #0b1220cc; color: #fff; padding: 6px 10px; border-radius: 8px; font-family: system-ui, sans-serif; font-size: 14px }
+    </style>
+  </head>
+  <body>
+    <div id="app"></div>
+    <div class="ui">Drag to orbit. Loading DamagedHelmet glTF…</div>
+    <script type="module">
+      import * as THREE from './build/three.module.js';
+      import { OrbitControls } from './examples/jsm/controls/OrbitControls.js';
+      import { GLTFLoader } from './examples/jsm/loaders/GLTFLoader.js';
+      import { RGBELoader } from './examples/jsm/loaders/RGBELoader.js';
+
+      const container = document.getElementById('app');
+
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 200);
+      camera.position.set(2.5, 1.6, 3);
+
+      const renderer = new THREE.WebGLRenderer({ antialias: true });
+      renderer.outputColorSpace = THREE.SRGBColorSpace;
+      renderer.toneMapping = THREE.ACESFilmicToneMapping;
+      renderer.toneMappingExposure = 1.0;
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      container.appendChild(renderer.domElement);
+
+      const controls = new OrbitControls(camera, renderer.domElement);
+      controls.enableDamping = true;
+
+      const pmrem = new THREE.PMREMGenerator(renderer);
+
+      new RGBELoader()
+        .setDataType(THREE.UnsignedByteType)
+        .load('https://threejs.org/examples/textures/equirectangular/royal_esplanade_1k.hdr', (hdrTex) => {
+          const envMap = pmrem.fromEquirectangular(hdrTex).texture;
+          hdrTex.dispose();
+          scene.environment = envMap;
+          scene.background = envMap;
+        });
+
+      const loader = new GLTFLoader();
+      loader.load(
+        'https://threejs.org/examples/models/gltf/DamagedHelmet/glTF/DamagedHelmet.gltf',
+        (gltf) => {
+          const model = gltf.scene;
+          scene.add(model);
+        }
+      );
+
+      const light = new THREE.DirectionalLight(0xffffff, 0.6);
+      light.position.set(5, 10, 5);
+      scene.add(light);
+
+      const onResize = () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+      };
+      window.addEventListener('resize', onResize);
+
+      const tick = () => {
+        controls.update();
+        renderer.render(scene, camera);
+        requestAnimationFrame(tick);
+      };
+      tick();
+    </script>
+  </body>
+</html>

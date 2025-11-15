@@ -17,7 +17,10 @@
   <!-- Start Header  -->
    <div class="header" id="header">
     <div class="container">
-      <a class="logo" href="##">AhMeD</a>
+      <div class="logo-wrapper">
+        <a class="logo" href="##">AhMeD<span class="logo-light"></span><span class="logo-bot"></span></a>
+        <div id="logo-robot"></div>
+      </div>
       <ul class="main-nav">
         <li>
           <a href="#articles">Articles</a>
@@ -683,6 +686,8 @@
     <!-- End Work Steps -->
       
 
+  <script src="Three.js/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="scrollreveal/scrollreveal.min.js"></script>
   <script src="typed.js/typed.umd.min.js"></script>
   <script>
@@ -737,6 +742,85 @@
       scale:1,
       viewFactor:.3,
     });
+
+    // gsap: moving light over logo & small bot beside it
+    gsap.to('.logo-light', {
+      x: 120,
+      duration: 1.8,
+      repeat: -1,
+      yoyo: true,
+      ease: 'power2.inOut'
+    });
+
+    gsap.to('.logo-bot', {
+      y: -4,
+      duration: 0.8,
+      repeat: -1,
+      yoyo: true,
+      ease: 'sine.inOut'
+    });
+
+    // three.js: simple robot next to logo saying HELLO USER
+    (function() {
+      const container = document.getElementById('logo-robot');
+      if (!container || !window.THREE) return;
+
+      const width = 80;
+      const height = 80;
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 100);
+      camera.position.set(0, 1.2, 3);
+
+      const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+      renderer.setSize(width, height);
+      renderer.setPixelRatio(window.devicePixelRatio || 1);
+      container.appendChild(renderer.domElement);
+
+      const light = new THREE.DirectionalLight(0xffffff, 1);
+      light.position.set(3, 5, 5);
+      scene.add(light);
+      scene.add(new THREE.AmbientLight(0x446688, 0.6));
+
+      const bodyMat = new THREE.MeshStandardMaterial({ color: 0x2196f3, metalness: 0.6, roughness: 0.3 });
+      const eyeMat = new THREE.MeshStandardMaterial({ color: 0xffffff, emissive: 0x00ffff, emissiveIntensity: 0.7 });
+
+      const headGeo = new THREE.BoxGeometry(0.9, 0.9, 0.9);
+      const head = new THREE.Mesh(headGeo, bodyMat);
+      head.position.y = 0.4;
+      scene.add(head);
+
+      const eyeGeo = new THREE.SphereGeometry(0.08, 16, 16);
+      const eyeL = new THREE.Mesh(eyeGeo, eyeMat);
+      eyeL.position.set(-0.22, 0.52, 0.43);
+      const eyeR = eyeL.clone();
+      eyeR.position.x = 0.22;
+      scene.add(eyeL, eyeR);
+
+      const bodyGeo = new THREE.BoxGeometry(0.7, 0.6, 0.4);
+      const body = new THREE.Mesh(bodyGeo, bodyMat);
+      body.position.y = -0.2;
+      scene.add(body);
+
+      const legGeo = new THREE.BoxGeometry(0.18, 0.4, 0.3);
+      const legL = new THREE.Mesh(legGeo, bodyMat);
+      legL.position.set(-0.18, -0.8, 0);
+      const legR = legL.clone();
+      legR.position.x = 0.18;
+      scene.add(legL, legR);
+
+      const speechDiv = document.createElement('div');
+      speechDiv.className = 'robot-speech';
+      speechDiv.textContent = 'HELLO USER';
+      container.appendChild(speechDiv);
+
+      function animate() {
+        requestAnimationFrame(animate);
+        head.rotation.y += 0.01;
+        body.rotation.y += 0.01;
+        renderer.render(scene, camera);
+      }
+      animate();
+    })();
   </script>
 
 </body>

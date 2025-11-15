@@ -251,6 +251,12 @@ flex-wrap: wrap;
 position: relative;
 }
 
+.logo-wrapper{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
 .logo{
 color: var(--main-color);
 font-size: 32px;
@@ -259,6 +265,70 @@ height: 72px;
 display: flex;
 justify-content: center;
 align-items: center;
+ text-shadow: 0 0 8px rgba(33, 150, 243, 0.6), 0 0 16px rgba(33, 150, 243, 0.4);
+ animation: logo-glow 2.2s ease-in-out infinite;
+}
+
+.logo:hover{
+  text-shadow: 0 0 10px rgba(33, 150, 243, 0.9), 0 0 22px rgba(33, 150, 243, 0.8), 0 0 32px rgba(33, 150, 243, 0.7);
+}
+
+@keyframes logo-glow {
+  0%, 100% {
+    text-shadow: 0 0 4px rgba(33, 150, 243, 0.4), 0 0 10px rgba(33, 150, 243, 0.3);
+    transform: translateY(0);
+  }
+  50% {
+    text-shadow: 0 0 10px rgba(33, 150, 243, 0.9), 0 0 24px rgba(33, 150, 243, 0.7);
+    transform: translateY(-1px);
+  }
+}
+
+.logo .logo-light{
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 120%;
+  margin-left: -10px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.9), transparent);
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+.logo .logo-bot{
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  margin-left: 8px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff 0%, var(--main-color) 50%, #0d47a1 100%);
+  box-shadow: 0 0 10px rgba(33, 150, 243, 0.9);
+}
+
+#logo-robot{
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+
+#logo-robot canvas{
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.robot-speech{
+  position: absolute;
+  top: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 3px 6px;
+  font-size: 9px;
+  font-weight: bold;
+  color: #fff;
+  background: rgba(33, 150, 243, 0.9);
+  border-radius: 10px;
+  white-space: nowrap;
+  box-shadow: 0 0 6px rgba(33, 150, 243, 0.8);
 }
 
 

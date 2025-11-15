@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Three.js OrbitControls</title>
+    <style>
+      html, body { height: 100%; margin: 0; }
+      #app { width: 100%; height: 100%; overflow: hidden; }
+      canvas { display: block; }
+    </style>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module">
+      import * as THREE from './build/three.module.js';
+      import { OrbitControls } from './examples/jsm/controls/OrbitControls.js';
+
+      const container = document.getElementById('app');
+      const scene = new THREE.Scene();
+      scene.background = new THREE.Color(0x0b1220);
+
+      const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 200);
+      camera.position.set(3, 2, 5);
+
+      const renderer = new THREE.WebGLRenderer({ antialias: true });
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      container.appendChild(renderer.domElement);
+
+      const controls = new OrbitControls(camera, renderer.domElement);
+      controls.enableDamping = true;
+
+      const grid = new THREE.GridHelper(10, 10, 0x3b82f6, 0x1e293b);
+      scene.add(grid);
+
+      const geo = new THREE.TorusKnotGeometry(0.8, 0.3, 180, 32);
+      const mat = new THREE.MeshStandardMaterial({ color: 0x22c55e, roughness: 0.25, metalness: 0.35 });
+      const mesh = new THREE.Mesh(geo, mat);
+      mesh.position.y = 1;
+      scene.add(mesh);
+
+      const light = new THREE.DirectionalLight(0xffffff, 1.1);
+      light.position.set(4, 6, 4);
+      scene.add(light);
+      scene.add(new THREE.AmbientLight(0xffffff, 0.35));
+
+      const onResize = () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+      };
+      window.addEventListener('resize', onResize);
+
+      const tick = () => {
+        controls.update();
+        mesh.rotation.y += 0.01;
+        renderer.render(scene, camera);
+        requestAnimationFrame(tick);
+      };
+      tick();
+    </script>
+  </body>
+</html>

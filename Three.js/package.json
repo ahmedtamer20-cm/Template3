@@ -1,0 +1,14 @@
+{
+  "name": "three-project",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Three.js full setup",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "start": "npx serve -p 5173 ."
+  },
+  "dependencies": {
+    "three": "^0.181.1"
+  }
+}
