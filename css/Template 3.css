@@ -904,9 +904,122 @@ transition: var(--main-transition);
   margin-bottom: 25px;
 }
 
-
 /* end team members */
+/* start services */
+.services{
+  padding-top: var(--main-padding-top);
+  padding-bottom: var(--main-padding-bottom);
+  position: relative;
+  background-color: var(--section-background);
+}
 
+.services .container{
+     display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 40px;
+}
+
+.services .container .box{
+  position: relative;
+   /* padding: 20px; */
+  background-color: white;
+  box-shadow: 0 2px 4px rgb(0 0 0 / 7%);
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 12px 20px 0 rgb(0 0 0 / 13%), 0 2px 4px 0 rgb(0 0 0 / 12%);
+ counter-increment: services;
+ transition: var(--main-transition);
+}
+
+.services .container .box::before{
+  content: "";
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  left: 50%;
+  background-color: var(--main-color);
+  width: 0%;
+  height: 3px;
+  transition: var(--main-transition);
+}
+
+.services .container .box::after{
+  content: "";
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  right: 50%;
+  background-color: var(--main-color);
+  width: 0%;
+  height: 3px;
+  transition: var(--main-transition);
+  
+}
+
+.services .container .box:hover:after,
+.services .container .box:hover:before{
+  width: 100%;
+  transition: var(--main-transition);
+  
+}
+
+.services .box i{
+margin: 40px auto;
+display: block;
+text-align: center;
+color: #74b399dc;
+}
+
+.services .info{
+  position: relative;
+  background-color: #f9f9f9;
+  padding: 15px;
+  text-align: right;
+}
+
+.services .box .info::before{
+   content: "0" counter(services);/* to count automaticlly */
+ position: absolute;
+  background-color: var(--main-color); 
+  color: white;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 80px;
+  font-size: 30px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-right: 25px;
+}
+
+.services .box .info::after{
+content: "";
+position: absolute;
+background-color: #D5D5D5;
+top: 0;
+left: 80px;
+width: 50px;
+height: calc(100% + 0.4px);
+transform: skew(-30deg);
+
+}
+
+.services .box > h3{
+  text-align: center;
+  margin: 20px 0 40px;
+  font-size: 25px;
+  color: var(--main-color);
+}
+
+.services .info > a{
+  color: var(--main-color);
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* end services */
 
 
 
