@@ -1570,6 +1570,9 @@ padding: 10px 10px 35px 10px;
 font-size:18px;
 right: 20px;
 width: 40px;
+align-items: center;
+align-content: center;
+justify-content: center;
 }
 .pricing .box.popular .label::before {
 content: '';
@@ -1635,11 +1638,3 @@ border-width: 20px;
   color: white;
 }
 /* end pricing */
-
-
-
-
-
-
-
-
