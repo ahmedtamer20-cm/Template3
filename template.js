@@ -14,8 +14,6 @@ window.onscroll = function(){
     
     if (window.scrollY >= 5000){
       btn.style.display = " block"
-      btn.style.transition = "0.5s"
-
     }else{
       btn.style.display = " none"
     }
@@ -30,16 +28,3 @@ btn.onclick= function(){
     });
 };
 
-  let btn1 = document.querySelector(".go-down")
-
-    
-  
-btn1.onclick= function(){
-   
-    window.scrollTo({
-      top: 20000000,
-      
-      right: 0, 
-      behavior: "smooth",
-    });
-};

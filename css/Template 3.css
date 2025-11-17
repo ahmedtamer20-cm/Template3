@@ -154,7 +154,7 @@ a{
 .button{
 
   position:sticky;
-color : var(--main-color-alt);
+color :var(--main-color-alt) ;
 border-radius:4px ;
  justify-content: center;
  align-items: center;
@@ -169,7 +169,7 @@ z-index: 1000;
 transition: var(--main-transition);
 opacity: 100%;
 animation: up 1s infinite alternate;
-display:none 
+display:none ;
  }
 
 .button:hover{
@@ -548,13 +548,12 @@ position: relative;
     position: absolute;
     left: 50%;
     bottom: 30px;
-    color: var(--main-color);
-    cursor: pointer;
 }
 
-.go-down {
+.go-down i{
   position: relative;
   animation:  rocket-bounce 1s ease-in-out infinite;
+  color: var(--main-color);
 }
 
 @keyframes bouncing {
