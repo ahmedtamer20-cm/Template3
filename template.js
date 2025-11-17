@@ -9,20 +9,20 @@ let emailValid =  document.querySelector("[name='email']")
              e.preventDefault()
          }
     }
+    // scroll to top
   let btn = document.querySelector(".button")
 window.onscroll = function(){
     
     if (window.scrollY >= 5000){
-      btn.style.display = " block"
+      btn.classList.add("show")
     }else{
-      btn.style.display = " none"
+      btn.classList.remove("show")
     }
 };
 btn.onclick= function(){
    
     window.scrollTo({
       top: 0,
-      
       right: 0, 
       behavior: "smooth",
     });
