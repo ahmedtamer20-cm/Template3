@@ -150,7 +150,7 @@ a{
 }
 
 /* end media */
-
+/* start button */
 .button{
   
   position:sticky;
@@ -163,7 +163,7 @@ border-radius:4px ;
 font-weight: bold;
  /* width: 20px;  */
  top: 680px;
-left:1500px;
+left:1480px;
 cursor: pointer !important;
 z-index: 1000;
 transition: opacity var(--main-transition), transform var(--main-transition);
@@ -189,17 +189,23 @@ background-color: #727070;
   animation: none;
     box-shadow: 0px 0px 10px 7px black;
 }
+/* end button */
+
 
 @keyframes up {
   0% {
-    transform: rotate3d(0,0,0,0deg);
+    transform: translateY(0px);
     box-shadow: 0px 0px 10px 7px black;
     scale: .9;
+    border-radius: 50px;
+    filter: blur(0px);
   }
    100% {
-    /* transform: rotate3d(0,0,1,30deg); */
     scale: 1;
-
+    transform: translateY(-10px);
+border-bottom: 8px double black;
+    border-radius: 50px;
+    width: 60px;
 }
 }
 .main-title{
