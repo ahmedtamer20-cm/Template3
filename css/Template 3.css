@@ -186,6 +186,7 @@ background-color: #727070;
 }
 
 .button:hover{
+  animation: none;
     box-shadow: 0px 0px 10px 7px black;
 }
 
