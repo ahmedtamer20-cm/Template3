@@ -161,7 +161,7 @@ border-radius:4px ;
  align-self: center;
 font-weight: bold;
  /* width: fit-content;  */
- top: 700px;
+ top: 680px;
 left:1500px;
 cursor: pointer !important;
 z-index: 1000;
@@ -172,6 +172,9 @@ display:none ;
 border-bottom: 5px double black;
 border-top: .01px double black;
 border-radius: 50px;
+box-shadow: 0px 40px 30px 14px black;
+backdrop-filter: blur(50px);
+
  }
 
 .button:hover{
@@ -280,6 +283,8 @@ display: flex;
 .header{
     background-color: white;
     box-shadow: 0 0 10px #ddd;
+backdrop-filter: blur(30px);
+
 }
 
 .header .container {
@@ -688,6 +693,8 @@ background-color: var(--section-background) ;
   background-color: whitesmoke;
   padding: 15px;
 box-shadow: 0 2px 15px rgb(0 0 0 / 29%);
+backdrop-filter: blur(30px);
+
 
 }
 
