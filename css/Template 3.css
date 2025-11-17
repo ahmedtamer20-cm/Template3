@@ -152,7 +152,6 @@ a{
 /* end media */
 
 .button{
-
   position:sticky;
 color :var(--main-color-alt) ;
 border-radius:4px ;
@@ -170,6 +169,9 @@ transition: var(--main-transition);
 opacity: 100%;
 animation: up 1s infinite alternate;
 display:none ;
+border-bottom: 5px double black;
+border-top: .01px double black;
+border-radius: 50px;
  }
 
 .button:hover{
@@ -187,7 +189,6 @@ display:none ;
 }
 
 .main-title{
-  
   position: relative;
 margin: 0 auto 80px;
 width: fit-content;
