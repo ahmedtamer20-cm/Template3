@@ -26,6 +26,7 @@ body{
       font-family: "Cairo", sans-serif;
       perspective: 1200px;
       transform-style: preserve-3d;
+      
 }
 
 ul{list-style: none;
@@ -149,6 +150,41 @@ a{
 }
 
 /* end media */
+
+.button{
+
+  position:sticky;
+color : var(--main-color-alt);
+border-radius:4px ;
+ justify-content: center;
+ align-items: center;
+ align-content: center;
+ align-self: center;
+font-weight: bold;
+ /* width: fit-content;  */
+ top: 700px;
+left:1500px;
+cursor: pointer !important;
+z-index: 1000;
+transition: var(--main-transition);
+opacity: 100%;
+animation: up 1s infinite alternate;
+display:none 
+ }
+
+.button:hover{
+ animation: none;
+}
+
+@keyframes up {
+  0% , 100% {
+    transform: translateY(10px);
+  }
+  50%{
+    transform: translateY(-10px);
+
+  }
+}
 
 .main-title{
   
@@ -512,9 +548,11 @@ position: relative;
     position: absolute;
     left: 50%;
     bottom: 30px;
+    color: var(--main-color);
+    cursor: pointer;
 }
 
-.go-down i{
+.go-down {
   position: relative;
   animation:  rocket-bounce 1s ease-in-out infinite;
 }
