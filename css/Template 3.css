@@ -162,8 +162,8 @@ border-radius:4px ;
  align-self: center;
 font-weight: bold;
  /* width: 20px;  */
- top: 680px;
-left:1480px;
+ top: 720px;
+left:1510px;
 cursor: pointer !important;
 z-index: 1000;
 transition: opacity var(--main-transition), transform var(--main-transition);
