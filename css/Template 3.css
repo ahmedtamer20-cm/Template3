@@ -181,7 +181,9 @@ background-color: #727070;
 
 @media(max-width:991px){
 .button{
-  display: none !important  ;
+  top: 700px!important  ;
+  left: 1490px !important;
+  animation: none !important;
 }
 }
 
