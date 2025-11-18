@@ -179,6 +179,12 @@ backdrop-filter: blur(50px);
 background-color: #727070;
  }
 
+@media(max-width:991px){
+.button{
+  display: none !important  ;
+}
+}
+
 .button.show{
   opacity: 1;
   transform: translateY(0);
